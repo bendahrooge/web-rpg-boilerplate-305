@@ -14,31 +14,44 @@
       <!-- Import scenes (If you knew this was running in Electron (had node APIs) you could require the entire src/ folder) -->
 
       <script src="src/bashy.model.js"></script>
+      <script src="src/bush.model.js"></script>
+
       <script src="src/index.scene.js"></script>
+      <script src="src/demo.scene.js"></script>
+
 
 
       <!-- Main start script -->
       <script>
+        let currentScene;
+
         let mainScene;
+        let miniGame;
 
           function setup(){
             // The first function called by p5 on DOM ready
             // Perhaps in the future we consider resizeing the canvas based on the client viewport size?
             createCanvas(600, 600);
 
-            mainScene = new Terminal();
+            mainScene = new DemoScene();
+            miniGame = new Terminal();
 
+            currentScene = mainScene;
           }
 
 
           function draw(){
             // TODO write a scene loader here? 
-            mainScene.draw();
+            currentScene.draw();
           }
 
           function keyReleased(){
-              mainScene.handleKeyBoardInput();
+            // If current scene is listening for keyboard events, then call function
+            if(typeof currentScene.handleKeyBoardInput){
+              miniGame.handleKeyBoardInput();
+            }
           }
+
       </script>
   </head>
   <body>
