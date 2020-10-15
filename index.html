@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <!-- CSS reset to remove default browser stylings -->
+    <style>
+        body {
+          padding: 0;
+          margin: 0;
+        }
+      </style>
+      <!-- Libaries for processing, audio, etc. -->
+      <script src="lib/p5.min.js"></script>
+      <script src="lib/addons/p5.sound.min.js"></script>
+
+      <!-- Import scenes (If you knew this was running in Electron (had node APIs) you could require the entire src/ folder) -->
+
+      <script src="src/bashy.model.js"></script>
+      <script src="src/index.scene.js"></script>
+
+
+      <!-- Main start script -->
+      <script>
+        let mainScene;
+
+          function setup(){
+            // The first function called by p5 on DOM ready
+            // Perhaps in the future we consider resizeing the canvas based on the client viewport size?
+            createCanvas(600, 600);
+
+            mainScene = new Terminal();
+
+          }
+
+
+          function draw(){
+            // TODO write a scene loader here? 
+            mainScene.draw();
+          }
+
+          function keyReleased(){
+              mainScene.handleKeyBoardInput();
+          }
+      </script>
+  </head>
+  <body>
+
+    <!-- The p5 selects the main tag by default -->
+    <main>
+    </main>
+  </body>
+</html>
